@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../component/Home.vue'
 import Login from '../component/Login.vue'
 import NotFound from '../component/NotFound.vue'
+import Board from '../component/Board.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/login', component: Login },
+    { path: '/b/:board_id', component: Board },
     { path: '*', component: NotFound }
   ]
 })
