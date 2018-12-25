@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {board} from '../api'
 
 export default {
