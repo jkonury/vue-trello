@@ -1,12 +1,13 @@
 <template>
   <div class="list">
     <div class="list-header">
-      <div class="list-header-title">
-        {{data.title}}
-      </div>
+      <div class="list-header-title">{{data.title}}</div>
+    </div>
+    <div class="card-list">
+      <card-item v-for="card in data.cards" :key="card.id" :data="card" />
     </div>
     <div v-if="isAddCard">
-      <add-card @close="isAddCard = false"/>
+      <add-card :list-id="data.id" @close="isAddCard = false"/>
     </div>
     <div v-else>
       <a href="" @click.prevent="isAddCard = true" class="add-card-btn">
@@ -18,10 +19,12 @@
 
 <script>
 import AddCard from './AddCard'
+import CardItem from './CardItem'
 
 export default {
   components: {
-    AddCard
+    AddCard,
+    CardItem
   },
   props: ['data'],
   data() {
