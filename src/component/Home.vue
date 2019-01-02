@@ -10,7 +10,7 @@
           </router-link>
         </div>
         <div class="board-item board-item-new">
-          <a href="" @click.prevent="addBoard" class="new-board-btn">
+          <a href="" @click.prevent="SET_IS_ADD_BOARD(true)" class="new-board-btn">
             Create new board...
           </a>
         </div>
@@ -23,7 +23,7 @@
 <script>
 import {board} from '../api'
 import AddBoard from './AddBoard'
-import {mapState} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   components: {
@@ -35,10 +35,10 @@ export default {
       boards: [],
     }
   },
-  computed: {
+  computed:{
     ...mapState([
       'isAddBoard'
-    ])
+    ]),
   },
   created() {
     this.fetchData()
@@ -49,6 +49,9 @@ export default {
     })
   },
   methods: {
+    ...mapMutations([
+      'SET_IS_ADD_BOARD'
+    ]),
     fetchData() {
       this.loading = true
 
