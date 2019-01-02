@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <AddBoard v-if="isAddBoard" @close="isAddBoard = false" @submit="onAddBoard" />
+    <AddBoard v-if="isAddBoard" @submit="onAddBoard" />
   </div>
 </template>
 
@@ -64,8 +64,7 @@ export default {
         })
     },
     onAddBoard(title) {
-      board.create(title)
-        .then(() => this.fetchData())
+      this.fetchData()
     }
   }
 }
