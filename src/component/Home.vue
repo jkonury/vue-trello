@@ -23,6 +23,7 @@
 <script>
 import {board} from '../api'
 import AddBoard from './AddBoard'
+import {mapState} from 'vuex'
 
 export default {
   components: {
@@ -32,8 +33,12 @@ export default {
     return {
       loading: false,
       boards: [],
-      isAddBoard: false
     }
+  },
+  computed: {
+    ...mapState([
+      'isAddBoard'
+    ])
   },
   created() {
     this.fetchData()
@@ -54,9 +59,6 @@ export default {
         .finally(_ => {
           this.loading = false
         })
-    },
-    addBoard() {
-      this.isAddBoard = true
     },
     onAddBoard(title) {
       board.create(title)
