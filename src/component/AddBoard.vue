@@ -55,9 +55,7 @@ export default {
       this.SET_IS_ADD_BOARD(false)
       // this.$store.dispatch('ADD_BOARD', {title: this.input})
       this.ADD_BOARD({title: this.input})
-          .then(() => {
-            this.FETCH_BOARDS()
-          })
+          .then(({id}) => this.$router.push(`/b/${id}`))
 
     }
   }

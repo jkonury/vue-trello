@@ -27,8 +27,13 @@ export const setAuthInHeader = token => {
 }
 
 export const board = {
-  fetch() {
-    return request('get', '/boards')
+  fetch(id) {
+    if (id) {
+      return request('get', `/boards/${id}`)
+    } else {
+      return request('get', '/boards')
+    }
+
   },
   create(title) {
     return request('post', '/boards', {title})

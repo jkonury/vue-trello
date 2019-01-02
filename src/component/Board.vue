@@ -4,6 +4,7 @@
     <div v-if="loading">loading board...</div>
     <div v-else>
       <div>board_id : {{board_id}} </div>
+      <pre>{{board}}</pre>
       <router-link :to="`/b/${board_id}/c/1`">Card 1</router-link>
       <router-link :to="`/b/${board_id}/c/2`">Card 2</router-link>
     </div>
@@ -13,6 +14,9 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
+
+
 export default {
   data() {
     return {
@@ -20,17 +24,23 @@ export default {
       loading: false
     }
   },
+  computed: {
+    ...mapState({
+      board: 'board'
+    })
+  },
   created() {
     this.fetchData();
     this.board_id = this.$route.params.board_id
   },
   methods: {
+    ...mapActions([
+      'FETCH_BOARD'
+    ]),
     fetchData() {
       this.loading = true
-      setTimeout(() => {
-        this.board_id = this.$route.params.board_id
-        this.loading = false;
-      }, 500)
+      this.FETCH_BOARD({id: this.$route.params.board_id})
+          .then(() => this.loading = false)
     }
   }
 }
