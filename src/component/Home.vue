@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import {board} from '../api'
 import AddBoard from './AddBoard'
 import {mapState, mapMutations, mapActions} from 'vuex'
 
@@ -61,8 +60,8 @@ export default {
       this.loading = true
 
       this.FETCH_BOARDS().finally(_ => {
-          this.loading = false
-        })
+        this.loading = false
+      })
     }
   }
 }
